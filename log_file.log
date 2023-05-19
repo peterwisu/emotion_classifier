@@ -1,0 +1,8 @@
+2023-05-19 11:08:53 ,INFO:, user_input: What is the capital of France?, model_prediction: curiosity, score: 0.8137529
+2023-05-19 11:12:32 ,INFO:, user_input: I hate ghost?, model_prediction: anger, score: 0.77864456
+2023-05-19 11:12:41 ,INFO:, user_input: I love ghost?, model_prediction: love, score: 0.98246044
+2023-05-19 11:12:51 ,INFO:, user_input: I am hungry?, model_prediction: curiosity, score: 0.7831667
+2023-05-19 11:13:02 ,INFO:, user_input: I am tired?, model_prediction: curiosity, score: 0.67104113
+2023-05-19 11:13:16 ,INFO:, user_input: Awww that duisguting?, model_prediction: curiosity, score: 0.7082415
+2023-05-19 11:57:30 ,INFO:, user_input: Hello friends, model_prediction: neutral, score: 0.93329346
+2023-05-19 11:57:39 ,INFO:, user_input: Hello friends, model_prediction: neutral, score: 0.93329346
