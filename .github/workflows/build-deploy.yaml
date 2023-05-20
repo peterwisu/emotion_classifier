@@ -1,0 +1,17 @@
+name: emotion_classifier
+
+on:
+  push:
+    branches:
+      - "master"
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    step:
+      - name: Push repo
+        uses: actions/checkout@v3
+      - name: Print hello
+        run: echo "hello world"
+        
