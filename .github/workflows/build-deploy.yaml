@@ -38,7 +38,7 @@ jobs:
 
 
     environment:
-      name: heroku_production
+      name: nlp_cw2
     
     steps:
       - name: Get actions
