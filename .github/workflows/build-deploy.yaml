@@ -37,12 +37,8 @@ jobs:
     steps:
       - name: Get actions
         uses: actions/checkout@v3
-      
       - name: Deploying to Heroku
         uses: akhileshns/heroku-deploy@v3.12.14 # This is the action
-        with:
-        - name: Install Python
-        uses: actions/setup-python@v2
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.APP_NAME}} #Must be unique in Heroku
