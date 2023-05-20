@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Install git lfs
         run: git lfs install
+      - name: Lfs Pull
+        run: git lfs pull
       - name: Push repo
         uses: actions/checkout@v3
       - name: Install Python
