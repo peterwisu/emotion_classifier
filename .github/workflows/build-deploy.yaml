@@ -14,11 +14,6 @@ jobs:
       - name: Push repo
         uses: actions/checkout@v3
 
-      - name: Install Git LFS
-        run: |
-          sudo apt-get install git-lfs  # Install Git LFS on Ubuntu
-          git lfs install
-          git lfs pull
       - name: Install Python
         uses: actions/setup-python@v2
         with:
