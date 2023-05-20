@@ -25,7 +25,7 @@ jobs:
       - name: Install all dependencies
         run: pip install -r requirements.txt
       - name: Run Server
-        run: python main.py
+        run: uvicorn main:app --reload
 
   heroku-deployment:
     runs-on: ubuntu-latest
