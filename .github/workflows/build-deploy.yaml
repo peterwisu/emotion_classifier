@@ -3,7 +3,7 @@ name: emotion_classifier
 on:
   push:
     branches:
-      - "master"
+      - "main"
 
 
 jobs:
