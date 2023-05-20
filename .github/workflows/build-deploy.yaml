@@ -10,12 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Git LFS
-        run: |
-          git lfs install
-          git lfs pull
+     
       - name: Push repo
         uses: actions/checkout@v3
+
+      - name: Install Git LFS
+        run: |
+          sudo apt-get install git-lfs  # Install Git LFS on Ubuntu
+          git lfs install
+          git lfs pull
       - name: Install Python
         uses: actions/setup-python@v2
         with:
