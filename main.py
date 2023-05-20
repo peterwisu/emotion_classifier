@@ -14,7 +14,7 @@ logging.basicConfig(filename="log_file.log",
                     )
 
 # initialise predictor
-emo_predictor = EmoClassifier()
+emo_predictor = EmoClassifier(logger=logging)
 
 # # create UI
 demo = gr.Interface(
@@ -49,14 +49,11 @@ class Response(BaseModel):
 # API endpoint for prediction
 @app.post("/predict", response_model=Response)
 async def predict_api(request: Request):
-    
-    print(request.text)
 
     results =  emo_predictor.predict_emo(request.text)
     
-    print(results)
     
-    logging.info("Logging additional Information", extra={'user_input': results[0], 'model_prediction': results[1], 'score': results[2]})
+    #logging.info("Logging additional Information", extra={'user_input': results[0], 'model_prediction': results[1], 'score': results[2]})
 
     return Response(
                        results=[ Result(text=results[0],label=results[1],score=results[2])]

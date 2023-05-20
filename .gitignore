@@ -1,2 +1,2 @@
 ./__pycache__
-./ckpt/*/*
+./ckpt/best_model.pt

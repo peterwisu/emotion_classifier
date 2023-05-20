@@ -4,3 +4,4 @@ transformers==4.29.2
 uvicorn==0.22.0
 torch==2.0.1+cpu
 gunicorn
+scikit-learn
