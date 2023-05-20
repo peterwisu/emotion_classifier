@@ -24,8 +24,8 @@ jobs:
       #   run: pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
       - name: Install all dependencies
         run: pip install -r requirements.txt
-      - name: Run Server
-        run: uvicorn main:app --reload
+      # - name: Run Server
+      #   run: uvicorn main:app --reload
 
   heroku-deployment:
     runs-on: ubuntu-latest
