@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from model import EmoClassifier
 import typing
 import logging
+import os
 
 
 logging.basicConfig(filename="log_file.log",
@@ -13,8 +14,11 @@ logging.basicConfig(filename="log_file.log",
                     
                     )
 
+
+
+model_type = os.environ.get("MY_MODEL")
 # initialise predictor
-emo_predictor = EmoClassifier(logger=logging)
+emo_predictor = EmoClassifier(logger=logging,model_type=model_type)
 
 # # create UI
 demo = gr.Interface(

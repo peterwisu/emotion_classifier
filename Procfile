@@ -1,1 +1,1 @@
-web: gunicorn  -w 1 -k uvicorn.workers.UvicornWorker main:app
+web: MY_MODEL=logistic gunicorn  -w 1 -k uvicorn.workers.UvicornWorker main:app

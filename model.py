@@ -17,10 +17,10 @@ class EmoClassifier:
         
         self.model_type = model_type 
         if self.model_type == "roberta":
-            print("Loading tokenizer.....")
+            print("Loading Roberta tokenizer.....")
             #self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
             self.tokenizer  = RobertaTokenizerFast.from_pretrained('roberta-base')
-            print("Loading Model......")
+            print("Loading Roberta Model......")
             #self.model =  BertForSequenceClassification.from_pretrained('bert-base-uncased')
             
             self.model = RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=14)
@@ -32,13 +32,13 @@ class EmoClassifier:
             self.labels = ['anger', 'confusion', 'curiosity', 'desire', 'disgust', 'embarrassment', 'fear', 'joy', 'love', 'optimism', 'pride', 'sadness', 'surprise', 'neutral']
         else:
             
-            print("Load Logistic Tokenizer")
+            print("Loading Logistic Regression Tokenizer........")
             
             with open('./ckpt/tokenizer_bow.pkl', 'rb') as file:
                 
                 self.tokenizer = pickle.load(file)
             
-            print("Load Logistic Model")
+            print("Loading Logistic Model.........")
             
             with open('./ckpt/model_logreg_sgd.pkl', 'rb') as file:
                 

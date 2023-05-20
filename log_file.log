@@ -24,3 +24,7 @@
 2023-05-20 23:04:43 ,INFO:, user_input: I hate, model_prediction: anger, score: 0.5443001372500446
 2023-05-20 23:07:44 ,INFO:, user_input: What is the capital of France?, model_prediction: neutral, score: 0.36087319794582845
 2023-05-20 23:08:01 ,INFO:, user_input: I am curious?, model_prediction: curiosity, score: 0.7370019551253273
+2023-05-20 23:37:13 ,INFO:, user_input: , model_prediction: neutral, score: 0.3901293738770308
+2023-05-20 23:37:13 ,INFO:, user_input: , model_prediction: neutral, score: 0.3901293738770308
+2023-05-20 23:37:14 ,INFO:, user_input: , model_prediction: neutral, score: 0.3901293738770308
+2023-05-20 23:37:14 ,INFO:, user_input: , model_prediction: neutral, score: 0.3901293738770308
