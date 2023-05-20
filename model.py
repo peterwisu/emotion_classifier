@@ -10,8 +10,8 @@ class EmoClassifier:
 
     def __init__(self) -> None:
 
-        self.tokenizer = BertTokenizer.from_pretrained('./ckpt/bert_base_uncased_tokenizer/')
-        self.model = BertForSequenceClassification.from_pretrained('./ckpt/bert_ex4/')
+        self.tokenizer = BertTokenizer.from_pretrained('bert_base_uncased')
+        self.model = BertForSequenceClassification.from_pretrained('bert_base_uncased')
         self.model.eval()
         self.labels = ['anger','confusion', 'curiosity', 'desire', 'digust', 'embarrassment', 'fear', 'joy', 'love', 'neutral', 'optimism', 'pride', 'sadness', 'surprise']
 
