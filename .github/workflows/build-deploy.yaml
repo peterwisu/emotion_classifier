@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  build(CI):
+  CI:
     runs-on: ubuntu-latest
     steps:
      
@@ -27,7 +27,7 @@ jobs:
       - name: Run Server
         run: python main.py
 
-  heroku-deployment(CD):
+  CD:
     runs-on: ubuntu-latest
     needs: [build]
 
