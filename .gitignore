@@ -1,2 +1,3 @@
 __pycache__
 ckpt/best_model.pt
+.env

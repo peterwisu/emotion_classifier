@@ -4,6 +4,45 @@ from transformers import BertTokenizer, BertModel, BertConfig , BertForSequenceC
 import numpy as np
 import pickle
 import sklearn
+import mysql.connector
+from mysql.connector import Error
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+HOST = os.getenv('HOST')
+DATABASE = os.getenv('DATABASE')
+DBUSERNAME = os.getenv('DBUSERNAME')
+PASSWORD = os.getenv('PASSWORD')
+
+print(HOST)
+print(DBUSERNAME)
+print(PASSWORD)
+print(DATABASE)
+
+
+def connect_database(host,database,user,password):
+    
+    global DB_connection
+    try:
+        DB_connection = mysql.connector.connect(host=host,
+                                            database=database,
+                                            user=user,
+                                            password=password)
+        if DB_connection.is_connected():
+               
+            db_Info = DB_connection.get_server_info()
+            print("Connected to MySQL Server version ", db_Info)
+            cursor = DB_connection.cursor()
+            cursor.execute("select database();")
+            record = cursor.fetchone()
+            print("You're connected to database: ", record)
+                      
+    except Error as e:
+            print("Error while connecting to MySQL", e)
+    
 
 class EmoClassifier:
 
@@ -42,8 +81,31 @@ class EmoClassifier:
                 
                 
             self.labels = ['anger','confusion', 'curiosity', 'desire', 'digust', 'embarrassment', 'fear', 'joy', 'love', 'neutral', 'optimism', 'pride', 'sadness', 'surprise']
-            
-        self.logger = logger
+        
+        print(HOST)
+        
+        try:
+            DB_connection = mysql.connector.connect(host=HOST,
+                                                database=DATABASE,
+                                                user=DBUSERNAME,
+                                                password=PASSWORD)
+            if DB_connection.is_connected():
+                
+                db_Info = DB_connection.get_server_info()
+                print("Connected to MySQL Server version ", db_Info)
+                cursor = DB_connection.cursor()
+                cursor.execute("select database();")
+                record = cursor.fetchone()
+                print("You're connected to database: ", record)
+                        
+        except Error as e:
+                print("Error while connecting to MySQL", e)
+        self.DB =  DB_connection
+        
+        
+        
+        
+        
 
     def predict_emo(self,text):
 
@@ -68,9 +130,21 @@ class EmoClassifier:
             idx = np.argmax(proba)
             pred = self.labels[idx]
         
-        self.logger.info("Logging additional Information", extra={'user_input': text,
-                                                                  'model_prediction': pred,
-                                                                  'score': np.max(proba)})
+        # self.logger.info("Logging additional Information", extra={'user_input': text,
+        #                                                           'model_prediction': pred,
+        #                                                           'score': np.max(proba)})
+        
+        if self.DB.is_connected():
+            cursor = self.DB.cursor()
+
+            # SQL query to insert data
+            sql_query = "INSERT INTO log_data (timestamp, user_input, model_prediction, score) VALUES (NOW(), %s, %s, %s)"
+
+            # Insert the additional information
+            cursor.execute(sql_query, (text, pred, np.max(proba)))
+
+            # Commit the changes to the database
+            self.DB.commit()
 
 
         return (text, pred, np.max(proba))
