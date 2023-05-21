@@ -1,0 +1,4 @@
+2023-05-21 18:47:46 ,INFO:, user_input: asdasd, model_prediction: neutral, score: 0.3901293738770308
+2023-05-21 18:50:20 ,INFO:, user_input: asdasd, model_prediction: neutral, score: 0.3901293738770308
+2023-05-21 18:54:27 ,INFO:, user_input: string, model_prediction: neutral, score: 0.42234536646769777
+2023-05-21 18:55:32 ,INFO:, user_input: Hello friends, model_prediction: neutral, score: 0.5856107044541276

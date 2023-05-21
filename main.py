@@ -51,18 +51,19 @@ demo = gr.Interface(
 # initialise server 
 app = FastAPI()
 
-# # mount UI on the server
-app = gr.mount_gradio_app(app, demo, path="/")
 
 # API endpoint for prediction
 @app.post("/predict", response_model=Response)
 async def predict_api(request: Request):
-
+    
+    print(request.text)
     results =  emo_predictor.predict_emo(request.text)
 
     return Response(
                        results=[ Result(text=results[0],label=results[1],score=results[2])]
                     )
 
+# # mount UI on the server
+app = gr.mount_gradio_app(app, demo, path="/")
 
 
