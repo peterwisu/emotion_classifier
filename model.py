@@ -17,33 +17,6 @@ DATABASE = os.getenv('DATABASE')
 DBUSERNAME = os.getenv('DBUSERNAME')
 PASSWORD = os.getenv('PASSWORD')
 
-print(HOST)
-print(DBUSERNAME)
-print(PASSWORD)
-print(DATABASE)
-
-
-def connect_database(host,database,user,password):
-    
-    global DB_connection
-    try:
-        DB_connection = mysql.connector.connect(host=host,
-                                            database=database,
-                                            user=user,
-                                            password=password)
-        if DB_connection.is_connected():
-               
-            db_Info = DB_connection.get_server_info()
-            print("Connected to MySQL Server version ", db_Info)
-            cursor = DB_connection.cursor()
-            cursor.execute("select database();")
-            record = cursor.fetchone()
-            print("You're connected to database: ", record)
-                      
-    except Error as e:
-            print("Error while connecting to MySQL", e)
-    
-
 class EmoClassifier:
 
 
@@ -82,7 +55,7 @@ class EmoClassifier:
                 
             self.labels = ['anger','confusion', 'curiosity', 'desire', 'digust', 'embarrassment', 'fear', 'joy', 'love', 'neutral', 'optimism', 'pride', 'sadness', 'surprise']
         
-        print(HOST)
+     
         
         try:
             DB_connection = mysql.connector.connect(host=HOST,
@@ -101,10 +74,6 @@ class EmoClassifier:
         except Error as e:
                 print("Error while connecting to MySQL", e)
         self.DB =  DB_connection
-        
-        
-        
-        
         
 
     def predict_emo(self,text):
