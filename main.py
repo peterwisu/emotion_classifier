@@ -7,6 +7,24 @@ import logging
 import os
 
 
+# request object
+class Request(BaseModel):
+
+    text:  str
+
+# returning object
+class Result(BaseModel):
+
+    text: str
+    label: str
+    score: float
+
+# response object
+class Response(BaseModel):
+
+    results: typing.List[Result] 
+
+
 logging.basicConfig(filename="log_file.log",
                     level=logging.INFO,
                     datefmt='%Y-%m-%d %H:%M:%S',
@@ -28,42 +46,23 @@ demo = gr.Interface(
         allow_flagging="never",
         )
 
+
+
 # initialise server 
 app = FastAPI()
 
-# request object
-class Request(BaseModel):
-
-    text:  str
-
-# returning object
-class Result(BaseModel):
-
-    text: str
-    label: str
-    score: float
-
-# response object
-class Response(BaseModel):
-
-    results: typing.List[Result] 
-
-
+# # mount UI on the server
+app = gr.mount_gradio_app(app, demo, path="/")
 
 # API endpoint for prediction
 @app.post("/predict", response_model=Response)
 async def predict_api(request: Request):
 
     results =  emo_predictor.predict_emo(request.text)
-    
-    
-    #logging.info("Logging additional Information", extra={'user_input': results[0], 'model_prediction': results[1], 'score': results[2]})
 
     return Response(
                        results=[ Result(text=results[0],label=results[1],score=results[2])]
                     )
 
-# # mount UI on the server
-app = gr.mount_gradio_app(app, demo, path="/")
 
 
