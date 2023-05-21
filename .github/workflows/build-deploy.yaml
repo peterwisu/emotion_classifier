@@ -38,7 +38,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.APP_NAME}} #Must be unique in Heroku
           heroku_email: ${{secrets.MY_EMAIL}}
-          procfile: "web: MY_MODEL=logistic gunicorn  -w 1 -k uvicorn.workers.UvicornWorker main:app"
+  
         
 
 
