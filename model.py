@@ -55,7 +55,8 @@ class EmoClassifier:
                 
             self.labels = ['anger','confusion', 'curiosity', 'desire', 'digust', 'embarrassment', 'fear', 'joy', 'love', 'neutral', 'optimism', 'pride', 'sadness', 'surprise']
         
-     
+        
+        self.logger = logger 
         
         try:
             DB_connection = mysql.connector.connect(host=HOST,
@@ -99,9 +100,9 @@ class EmoClassifier:
             idx = np.argmax(proba)
             pred = self.labels[idx]
         
-        # self.logger.info("Logging additional Information", extra={'user_input': text,
-        #                                                           'model_prediction': pred,
-        #                                                           'score': np.max(proba)})
+        self.logger.info("Logging additional Information", extra={'user_input': text,
+                                                                  'model_prediction': pred,
+                                                                  'score': np.max(proba)})
         
         if self.DB.is_connected():
             cursor = self.DB.cursor()
@@ -114,7 +115,6 @@ class EmoClassifier:
 
             # Commit the changes to the database
             self.DB.commit()
-
 
         return (text, pred, np.max(proba))
 
