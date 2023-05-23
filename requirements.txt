@@ -7,3 +7,5 @@ gunicorn
 scikit-learn
 mysql-connector-python
 python-dotenv
+unittest
+
